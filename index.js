@@ -42,39 +42,12 @@ const getQueueNumber = async (number) => {
   return data;
 };
 
-let queueForm = document.getElementById('queueForm');
+const prompt = require('prompt-sync')({ sigint: true });
+const diaryNumber = process.argv[2] || prompt('Enter your diary number here: ');
 
-queueForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  let diaryNumber = document.getElementById('diaryNumber');
-
-  if (diaryNumber.value == '') {
-    alert('Please enter your diary number before submitting!');
-  } else {
-    getQueueNumber(diaryNumber.value)
-      .then((res) => {
-        const queueNumber =
-          res?.response?.elements[1]?.payload.json.data.counterValue;
-        document.getElementById('queueNumber').textContent =
-          'The application status with this diary number is: ' + queueNumber;
-      })
-      .catch(
-        (err) =>
-          (document.getElementById('queueNumber').textContent =
-            'The request was not successful. Try again!')
-      );
-  }
-
-  diaryNumber.value = '';
-});
-
-// const prompt = require('prompt-sync')({ sigint: true });
-// const diaryNumber = process.argv[2] || prompt('Enter your diary number here: ');
-
-// getQueueNumber(diaryNumber).then((res) =>
-//   console.log(
-//     'The application status with this diary number is: ' +
-//       res?.response?.elements[1]?.payload.json.data.counterValue
-//   )
-// );
+getQueueNumber(diaryNumber).then((res) =>
+  console.log(
+    'The application status with this diary number is: ' +
+      res?.response?.elements[1]?.payload.json.data.counterValue
+  )
+);

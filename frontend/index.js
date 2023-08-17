@@ -12,7 +12,10 @@ checkForm.addEventListener('submit', (e) => {
   } else {
     let queueNumber = 0;
 
-    fetch('http://0.0.0.0:8000/check/' + diaryNumber.value)
+    fetch(
+      'https://finnish-rp-queue-checker-api.onrender.com/check/' +
+        diaryNumber.value
+    )
       .then((res) => res.json())
       .then((data) => {
         queueNumber = data.queue_num;

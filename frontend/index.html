@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css"
+    />
+    <title>FI RP Queue Checker</title>
+  </head>
+  <body>
+    <div class="paper container">
+      <h1>Finnish Residence Permit Queue Checker</h1>
+      <form action="" id="queueForm">
+        <label for="diaryNumber">Enter your diary number here</label>
+        <input
+          type="text"
+          id="diaryNumber"
+          name="diaryNumber"
+          class="form-control"
+          placeholder="xxxxx/xxx/xxxx"
+        />
+        <input type="submit" id="submitBtn" value="Submit" />
+      </form>
+      <p id="queueNumber">The queue number will be displayed here.</p>
+      <script src="index.js"></script>
+    </div>
+  </body>
+</html>

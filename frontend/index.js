@@ -5,17 +5,22 @@ checkForm.addEventListener('submit', (e) => {
 
   document.getElementById('queueNumber').textContent = 'Loading...';
 
-  const diaryNumber = document.getElementById('diaryNumber');
+  const diaryNumber = document.getElementById('diaryNumber').value;
 
-  if (diaryNumber.value == '' || diaryNumber.value.length != 14) {
+  if (diaryNumber == '' || diaryNumber.length != 14) {
     alert('Please enter an appropriate diary number!');
   } else {
     let queueNumber = 0;
 
-    fetch(
-      'https://finnish-rp-queue-checker-api.onrender.com/check/' +
-        diaryNumber.value
-    )
+    fetch('http://0.0.0.0:8000/', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        diary_number: diaryNumber,
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         queueNumber = data.queue_num;
